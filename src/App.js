@@ -1,29 +1,62 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Father = styled.div`
+const Wrapper = styled.div`
   display: flex;
-`
+  width: 1000px;
+  height: 1000px;
+  justify-content: center;
+  align-items: center;
+`;
+
+//styled-componets와 상관없고 그냥 CSS문법이다.
+const animation = keyframes`
+  0% {
+    transform: rotate(0deg);
+    border-radius: 0px;
+  }
+  50% {
+    transform: rotate(360deg);
+    border-radius: 100px;
+  }
+  100% {
+    transform: rotate(0deg);
+    border-radius: 0px;
+  }
+`;
+
+const Emoji = styled.span`
+  font-size: 50px;
+    &:active {
+      opacity: 0;
+    }
+`;
+
+
 const Box = styled.div`
-  background-color: ${props => props.bgColor};
-  width: 100px;
-  height: 100px;
-`
+  height: 200px;
+  width: 200px;
+  background-color: tomato;
+  animation: ${animation} 1.5s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-const Circle = styled(Box)`
-  border-radius: 50px;
-`
-
-const Text = styled.span`
-  color: white;
-  font-size: 30px;
-`
+  //Box span{}과 같다.
+  ${Emoji} { 
+    //span:hover{}와 같다.
+    &:hover {
+      font-size: 98px
+    }
+  }
+`;
 
 function App() {
   return (
-    <Father>
-      <Box bgColor = "teal" />
-      <Circle bgColor = "tomato" />
-    </Father>
+    <Wrapper>
+      <Box>
+        <Emoji as="p">😃</Emoji>
+      </Box>
+    </Wrapper>
   );
 }
 
